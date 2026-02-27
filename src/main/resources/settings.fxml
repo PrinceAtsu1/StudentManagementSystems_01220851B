@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.template.ui.controllers.SettingsController"
+            id="settingsRoot">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox alignment="CENTER_RIGHT" styleClass="settings-topbar">
+            <Button text="Back to Dashboard" onAction="#goDashboard" styleClass="back-btn"/>
+        </HBox>
+    </top>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <VBox styleClass="settings-container" spacing="26">
+
+            <Label text="Settings" styleClass="settings-title"/>
+
+            <HBox spacing="26">
+
+                <!-- LEFT SIDE -->
+                <VBox spacing="14" HBox.hgrow="ALWAYS">
+                    <Label text="General Settings" styleClass="settings-section-title"/>
+
+                    <VBox styleClass="settings-card" spacing="14">
+                        <Label text="At-Risk GPA Threshold" styleClass="settings-card-title"/>
+
+                        <Label text="Set the GPA value below which students are flagged as &quot;at risk&quot;."
+                               styleClass="settings-card-desc"
+                               wrapText="true"/>
+
+                        <Spinner fx:id="thresholdSpinner" prefWidth="220" styleClass="settings-spinner"/>
+
+                        <Label text="Threshold Value" styleClass="settings-small-label"/>
+
+                        <Button text="Save Changes" onAction="#saveThreshold" styleClass="settings-save-btn"/>
+                    </VBox>
+                </VBox>
+
+                <!-- RIGHT SIDE -->
+                <VBox spacing="14" HBox.hgrow="ALWAYS">
+                    <Label text="Data Management" styleClass="settings-section-title"/>
+
+                    <VBox styleClass="settings-card" spacing="14">
+
+                        <Label text="Manage Programme List (Optional)" styleClass="settings-card-title"/>
+
+                        <ListView fx:id="programmeListView" prefHeight="290" styleClass="programme-list"/>
+
+                        <Button text="+  Add New Programme" onAction="#addProgramme" styleClass="settings-add-btn"/>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="note-box">
+                            <Label text="?" styleClass="note-icon"/>
+                            <Label text="Note: This is an optional feature to customize the available list of student programmes."
+                                   styleClass="note-text"
+                                   wrapText="true"/>
+                        </HBox>
+
+                    </VBox>
+                </VBox>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

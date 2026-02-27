@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.template.ui.controllers.ImportExportController"
+            id="importExportRoot">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox styleClass="ie-topbar" alignment="CENTER_LEFT" spacing="14">
+            <Label text="Import &amp; Export" styleClass="ie-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Back to Dashboard" onAction="#goDashboard" styleClass="back-btn"/>
+        </HBox>
+    </top>
+
+    <!-- MAIN -->
+    <center>
+        <HBox styleClass="ie-main" spacing="26">
+
+            <!-- EXPORT CARD -->
+            <VBox styleClass="ie-card" HBox.hgrow="ALWAYS">
+
+                <StackPane styleClass="ie-card-header">
+                    <Label text="Export Data" styleClass="ie-card-header-text"/>
+                </StackPane>
+
+                <VBox styleClass="ie-card-body" spacing="16">
+
+                    <Button fx:id="exportFullBtn"
+                            onAction="#exportFullStudentList"
+                            styleClass="ie-option-btn"
+                            contentDisplay="GRAPHIC_ONLY">
+                        <graphic>
+                            <HBox spacing="14" alignment="CENTER_LEFT" styleClass="ie-option-graphic">
+                                <StackPane styleClass="ie-icon-box">
+                                    <Label text="⬇" styleClass="ie-icon-label"/>
+                                </StackPane>
+                                <Label text="Export Full Student List (CSV)" styleClass="ie-option-text"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
+
+                    <Button fx:id="exportTopBtn"
+                            onAction="#exportTopPerformers"
+                            styleClass="ie-option-btn"
+                            contentDisplay="GRAPHIC_ONLY">
+                        <graphic>
+                            <HBox spacing="14" alignment="CENTER_LEFT" styleClass="ie-option-graphic">
+                                <StackPane styleClass="ie-icon-box">
+                                    <Label text="⬇" styleClass="ie-icon-label"/>
+                                </StackPane>
+                                <Label text="Export Top Performers Report (CSV)" styleClass="ie-option-text"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
+
+                    <Button fx:id="exportRiskBtn"
+                            onAction="#exportAtRiskReport"
+                            styleClass="ie-option-btn"
+                            contentDisplay="GRAPHIC_ONLY">
+                        <graphic>
+                            <HBox spacing="14" alignment="CENTER_LEFT" styleClass="ie-option-graphic">
+                                <StackPane styleClass="ie-icon-box">
+                                    <Label text="⬇" styleClass="ie-icon-label"/>
+                                </StackPane>
+                                <Label text="Export At Risk Report (CSV)" styleClass="ie-option-text"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
+
+                    <HBox spacing="10" styleClass="ie-note" alignment="CENTER_LEFT">
+                        <Label text="ℹ" styleClass="ie-note-icon"/>
+                        <Label text="All exported files will be saved automatically inside the project-controlled 'data' folder."
+                               styleClass="ie-note-text"
+                               wrapText="true"/>
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ProgressIndicator fx:id="exportProgress" visible="false" prefWidth="18" prefHeight="18"/>
+                        <Label fx:id="exportStatusLabel" text="" styleClass="ie-status"/>
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+
+            <!-- IMPORT CARD -->
+            <VBox styleClass="ie-card" HBox.hgrow="ALWAYS">
+
+                <StackPane styleClass="ie-card-header">
+                    <Label text="Import Data" styleClass="ie-card-header-text"/>
+                </StackPane>
+
+                <VBox styleClass="ie-card-body" spacing="16">
+
+                    <!-- Drop Zone -->
+                    <StackPane fx:id="dropZone"
+                               onMouseClicked="#chooseCsvFile"
+                               styleClass="drop-zone">
+
+                        <VBox alignment="CENTER" spacing="8">
+                            <Label text="☁" styleClass="drop-cloud"/>
+                            <Label text="Drag &amp; drop CSV file here" styleClass="drop-title"/>
+                            <Label text="or click to select" styleClass="drop-subtitle"/>
+                        </VBox>
+                    </StackPane>
+
+                    <Label fx:id="selectedFileLabel" text="No file selected" styleClass="selected-file"/>
+
+                    <Button fx:id="importBtn"
+                            text="Import Student Records"
+                            onAction="#importStudentRecords"
+                            styleClass="import-btn"/>
+
+                    <Label text="Import Validation Rules" styleClass="rules-title"/>
+
+                    <VBox spacing="10">
+                        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="rule-row">
+                            <Label text="✔" styleClass="rule-icon-ok"/>
+                            <Label text="Invalid rows are skipped and recorded in an import error report (prevents crashes)"
+                                   styleClass="rule-text"
+                                   wrapText="true"/>
+                        </HBox>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="rule-row">
+                            <Label text="✖" styleClass="rule-icon-bad"/>
+                            <Label text="Duplicate Student IDs are rejected and reported."
+                                   styleClass="rule-text"
+                                   wrapText="true"/>
+                        </HBox>
+                    </VBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ProgressIndicator fx:id="importProgress" visible="false" prefWidth="18" prefHeight="18"/>
+                        <Label fx:id="importStatusLabel" text="" styleClass="ie-status"/>
+                    </HBox>
+
+                    <Separator/>
+
+                    <HBox alignment="CENTER">
+                        <Hyperlink fx:id="viewErrorReportLink"
+                                   text="View Import Error Report"
+                                   onAction="#openErrorReport"
+                                   styleClass="view-report-link"/>
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+
+        </HBox>
+    </center>
+
+</BorderPane>

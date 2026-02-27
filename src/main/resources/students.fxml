@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:id="studentsRoot"
+            fx:controller="com.template.ui.controllers.StudentsController"
+            id="studentsRoot">
+
+    <center>
+        <VBox styleClass="students-content" spacing="18">
+
+            <!-- HEADER -->
+            <HBox alignment="CENTER_LEFT">
+                <VBox spacing="4">
+                    <Label text="Student Record Management" styleClass="page-title"/>
+                    <Label text="Students" styleClass="page-subtitle"/>
+                </VBox>
+
+                <Pane HBox.hgrow="ALWAYS"/>
+
+                <HBox spacing="12" alignment="CENTER_RIGHT">
+                    <Button text="Back to Dashboard"
+                            onAction="#goDashboard"
+                            styleClass="back-dashboard-btn"/>
+
+                    <Button text="+  Add New Student"
+                            onAction="#openAddStudent"
+                            styleClass="add-student-btn"/>
+                </HBox>
+            </HBox>
+
+            <!-- CARD -->
+            <VBox styleClass="card" spacing="12">
+
+                <!-- SEARCH + FILTERS (AUTO, NO APPLY/CLEAR BUTTONS) -->
+                <HBox spacing="16" alignment="CENTER_LEFT">
+
+                    <StackPane styleClass="search-wrapper">
+                        <TextField fx:id="searchField"
+                                   promptText="Search by ID or Name..."
+                                   styleClass="search-field"/>
+                        <Label text="🔍" styleClass="search-icon" StackPane.alignment="CENTER_LEFT"/>
+                    </StackPane>
+
+                    <Pane HBox.hgrow="ALWAYS"/>
+
+                    <ComboBox fx:id="levelFilter" promptText="Level" styleClass="filter-box" prefWidth="150"/>
+                    <ComboBox fx:id="programmeFilter" promptText="Programme" styleClass="filter-box" prefWidth="170"/>
+                    <ComboBox fx:id="statusFilter" promptText="Status" styleClass="filter-box" prefWidth="150"/>
+
+                </HBox>
+
+                <!-- TABLE -->
+                <TableView fx:id="studentTable" styleClass="students-table" prefHeight="560">
+                    <styleClass>
+                        <String fx:value="excel-table"/>
+                    </styleClass>
+                    <columns>
+                        <TableColumn fx:id="idCol" text="Student ID" prefWidth="110"/>
+                        <TableColumn fx:id="nameCol" text="Full Name" prefWidth="150"/>
+                        <TableColumn fx:id="programmeCol" text="Programme" prefWidth="170"/>
+
+                        <TableColumn fx:id="levelCol" text="Level" prefWidth="80" styleClass="col-center"/>
+                        <TableColumn fx:id="gpaCol" text="GPA" prefWidth="70" styleClass="col-center"/>
+
+                        <TableColumn fx:id="emailCol" text="Email" prefWidth="190"/>
+                        <TableColumn fx:id="phoneCol" text="Phone Number" prefWidth="120"/>
+
+                        <TableColumn fx:id="dateAddedCol" text="Date Added" prefWidth="110" styleClass="col-center"/>
+                        <TableColumn fx:id="statusCol" text="Status" prefWidth="90" styleClass="col-center"/>
+                        <TableColumn fx:id="actionsCol" text="Actions" prefWidth="110" styleClass="col-center"/>
+                    </columns>
+                </TableView>
+
+
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>

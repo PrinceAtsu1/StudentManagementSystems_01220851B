@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.template.ui.controllers.LoginController"
+            id="loginRoot">
+
+    <!-- LEFT FORM -->
+    <left>
+        <VBox spacing="16" styleClass="login-left" prefWidth="420">
+
+            <Label text="Student Management System" styleClass="brand"/>
+
+            <VBox spacing="6">
+                <Label text="Welcome back" styleClass="login-title"/>
+                <Label text="Please enter your details" styleClass="login-subtitle"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Email address" styleClass="form-label"/>
+                <TextField fx:id="emailField" promptText="name@example.com" styleClass="form-input"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Password" styleClass="form-label"/>
+                <PasswordField fx:id="passwordField" promptText="••••••••" styleClass="form-input"/>
+            </VBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <CheckBox fx:id="rememberCheck" text="Remember for 30 days" styleClass="muted"/>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Hyperlink text="Forgot password" onAction="#forgotPassword" styleClass="link"/>
+            </HBox>
+
+            <Button text="Sign in" onAction="#handleLogin" styleClass="primary-button" prefWidth="340"/>
+            <Button text="Sign in with Google" onAction="#googleSignIn" styleClass="outline-button" prefWidth="340"/>
+
+            <HBox spacing="6" alignment="CENTER">
+                <Label text="Don't have an account?" styleClass="muted"/>
+                <Hyperlink text="Sign up" onAction="#goToRegister" styleClass="link"/>
+            </HBox>
+
+            <Label fx:id="errorLabel" text="" styleClass="error-label" wrapText="true"/>
+
+        </VBox>
+    </left>
+
+    <!-- RIGHT DECOR -->
+    <center>
+        <StackPane styleClass="login-right">
+
+            <Circle radius="220" styleClass="bubble1" StackPane.alignment="TOP_RIGHT"/>
+            <Circle radius="140" styleClass="bubble2" StackPane.alignment="BOTTOM_LEFT"/>
+            <Circle radius="90" styleClass="bubble3" StackPane.alignment="CENTER_RIGHT"/>
+
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="🎓" styleClass="login-emoji"/>
+                <Label text="ACCRA TECHNICAL UNIVERSITY" styleClass="login-right-title"/>
+                <Label text="Records • Reports • Import/Export" styleClass="login-right-subtitle"/>
+            </VBox>
+
+        </StackPane>
+    </center>
+
+</BorderPane>

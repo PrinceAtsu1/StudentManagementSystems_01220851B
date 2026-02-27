@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.template.ui.controllers.ReportsController"
+            id="reportsRoot">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox styleClass="reports-topbar" alignment="CENTER_LEFT" spacing="12">
+            <Label text="Reports and Analytics" styleClass="reports-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Back to Dashboard" onAction="#goDashboard" styleClass="back-btn"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENT -->
+    <center>
+        <VBox styleClass="reports-container" spacing="14">
+
+            <TabPane fx:id="reportsTabPane"
+                     tabClosingPolicy="UNAVAILABLE"
+                     styleClass="reports-tabpane">
+
+                <tabs>
+
+                    <!-- TAB 1: TOP PERFORMERS (WITH RIGHT CARDS LIKE IMAGE) -->
+                    <Tab text="Top Performers">
+                        <content>
+                            <VBox spacing="14" styleClass="tab-content">
+
+                                <HBox spacing="12" alignment="CENTER_LEFT">
+                                    <Label text="Filter by Programme:" styleClass="filter-label"/>
+                                    <ComboBox fx:id="tpProgrammeFilter" styleClass="report-filter" prefWidth="190"/>
+
+                                    <Label text="Filter by Level:" styleClass="filter-label"/>
+                                    <ComboBox fx:id="tpLevelFilter" styleClass="report-filter" prefWidth="160"/>
+
+                                    <Pane HBox.hgrow="ALWAYS"/>
+                                </HBox>
+
+                                <HBox spacing="18">
+
+                                    <!-- LEFT: TABLE -->
+                                    <VBox styleClass="report-left" spacing="10" HBox.hgrow="ALWAYS">
+                                        <TableView fx:id="topTable" styleClass="report-table" prefHeight="520">
+                                            <styleClass>
+                                                <String fx:value="excel-table"/>
+                                            </styleClass>
+                                            <columns>
+                                                <TableColumn fx:id="rankCol" text="Rank" prefWidth="65"/>
+                                                <TableColumn fx:id="tpIdCol" text="Student ID" prefWidth="115"/>
+                                                <TableColumn fx:id="tpNameCol" text="Full Name" prefWidth="170"/>
+                                                <TableColumn fx:id="tpProgrammeCol" text="Programme" prefWidth="165"/>
+                                                <TableColumn fx:id="tpLevelCol" text="Level" prefWidth="80"/>
+                                                <TableColumn fx:id="tpGpaCol" text="GPA" prefWidth="75"/>
+                                            </columns>
+                                        </TableView>
+                                    </VBox>
+                                    <!-- RIGHT: 2x2 CARDS -->
+                                    <GridPane styleClass="report-right-grid" hgap="16" vgap="16" prefWidth="520">
+
+                                        <!-- CARD 1: At Risk Threshold -->
+                                        <VBox styleClass="report-card" GridPane.columnIndex="0" GridPane.rowIndex="0" prefHeight="150">
+                                            <HBox styleClass="report-card-header">
+                                                <Label text="At Risk Students" styleClass="report-card-title"/>
+                                            </HBox>
+                                            <VBox styleClass="report-card-body" spacing="12">
+                                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                                    <Label text="GPA Threshold:" styleClass="mini-label"/>
+                                                    <TextField fx:id="thresholdField"
+                                                               text="2.0"
+                                                               prefWidth="70"
+                                                               styleClass="threshold-field"/>
+                                                </HBox>
+                                                <Label fx:id="atRiskCountLabel" text="" styleClass="mini-muted"/>
+                                            </VBox>
+                                        </VBox>
+
+                                        <!-- CARD 2: Summary -->
+                                        <VBox styleClass="report-card" GridPane.columnIndex="1" GridPane.rowIndex="0" prefHeight="150">
+                                            <HBox styleClass="report-card-header">
+                                                <Label text="Summary" styleClass="report-card-title"/>
+                                            </HBox>
+                                            <VBox styleClass="report-card-body" spacing="10">
+                                                <HBox spacing="24">
+                                                    <VBox spacing="6">
+                                                        <Label text="Total Students" styleClass="mini-label"/>
+                                                        <Label fx:id="totalStudentsValue" text="0" styleClass="mini-value"/>
+                                                    </VBox>
+                                                    <VBox spacing="6">
+                                                        <Label text="Avg GPA" styleClass="mini-label"/>
+                                                        <Label fx:id="avgGpaValue" text="0.0" styleClass="mini-value"/>
+                                                    </VBox>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+
+                                        <!-- CARD 3: GPA Distribution -->
+                                        <VBox styleClass="report-card" GridPane.columnIndex="0" GridPane.rowIndex="1" prefHeight="290">
+                                            <HBox styleClass="report-card-header">
+                                                <Label text="GPA Distribution" styleClass="report-card-title"/>
+                                            </HBox>
+                                            <VBox styleClass="report-card-body" spacing="10">
+                                                <BarChart fx:id="gpaChart"
+                                                          animated="false"
+                                                          legendVisible="false"
+                                                          prefHeight="220">
+                                                    <xAxis>
+                                                        <CategoryAxis label=""/>
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis label=""/>
+                                                    </yAxis>
+                                                </BarChart>
+                                            </VBox>
+                                        </VBox>
+
+                                        <!-- CARD 4: Programme Summary -->
+                                        <VBox styleClass="report-card" GridPane.columnIndex="1" GridPane.rowIndex="1" prefHeight="290">
+                                            <HBox styleClass="report-card-header">
+                                                <Label text="Programme Summary" styleClass="report-card-title"/>
+                                            </HBox>
+                                            <VBox styleClass="report-card-body" spacing="10">
+                                                <TableView fx:id="programmeTable" styleClass="mini-table" prefHeight="220">
+                                                    <columns>
+                                                        <TableColumn fx:id="psProgrammeCol" text="Programme" prefWidth="170"/>
+                                                        <TableColumn fx:id="psTotalCol" text="Total Students" prefWidth="120"/>
+                                                        <TableColumn fx:id="psAvgCol" text="Avg GPA" prefWidth="90"/>
+                                                    </columns>
+                                                </TableView>
+                                            </VBox>
+                                        </VBox>
+
+                                    </GridPane>
+
+                                </HBox>
+
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <!-- TAB 2: FULL AT RISK -->
+                    <Tab text="At Risk Students">
+                        <content>
+                            <VBox spacing="14" styleClass="tab-content">
+                                <HBox spacing="12" alignment="CENTER_LEFT">
+                                    <Label text="GPA Threshold:" styleClass="filter-label"/>
+                                    <TextField fx:id="atRiskThresholdField" text="2.0" prefWidth="90" styleClass="threshold-field"/>
+                                    <Button text="Apply" onAction="#applyAtRiskThreshold" styleClass="apply-btn"/>
+                                    <Pane HBox.hgrow="ALWAYS"/>
+                                </HBox>
+
+                                <TableView fx:id="atRiskTable" styleClass="report-table" prefHeight="540">
+                                    <columns>
+                                        <TableColumn fx:id="arIdCol" text="Student ID" prefWidth="120"/>
+                                        <TableColumn fx:id="arNameCol" text="Full Name" prefWidth="180"/>
+                                        <TableColumn fx:id="arProgrammeCol" text="Programme" prefWidth="170"/>
+                                        <TableColumn fx:id="arLevelCol" text="Level" prefWidth="90"/>
+                                        <TableColumn fx:id="arGpaCol" text="GPA" prefWidth="90"/>
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <!-- TAB 3: FULL GPA DISTRIBUTION -->
+                    <Tab text="GPA Distribution">
+                        <content>
+                            <VBox spacing="14" styleClass="tab-content">
+                                <Label text="GPA Distribution" styleClass="section-title"/>
+                                <BarChart fx:id="gpaChartFull"
+                                          animated="false"
+                                          legendVisible="false"
+                                          prefHeight="520"
+                                          styleClass="report-chart">
+                                    <xAxis>
+                                        <CategoryAxis label="GPA Band"/>
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis label="Students"/>
+                                    </yAxis>
+                                </BarChart>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <!-- TAB 4: FULL PROGRAMME SUMMARY -->
+                    <Tab text="Programme Summary">
+                        <content>
+                            <VBox spacing="14" styleClass="tab-content">
+                                <Label text="Programme Summary" styleClass="section-title"/>
+                                <TableView fx:id="programmeTableFull" styleClass="report-table" prefHeight="540">
+                                    <columns>
+                                        <TableColumn fx:id="psfProgrammeCol" text="Programme" prefWidth="260"/>
+                                        <TableColumn fx:id="psfTotalCol" text="Total Students" prefWidth="180"/>
+                                        <TableColumn fx:id="psfAvgCol" text="Avg GPA" prefWidth="160"/>
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                </tabs>
+
+            </TabPane>
+
+        </VBox>
+    </center>
+
+</BorderPane>

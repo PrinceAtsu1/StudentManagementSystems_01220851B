@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.template.ui.controllers.StudentFormController"
+           id="studentFormRoot"
+           styleClass="dialog-overlay">
+
+    <VBox styleClass="dialog-card" maxWidth="860" maxHeight="540">
+
+        <StackPane styleClass="dialog-header" minHeight="90" maxHeight="90">
+            <Label fx:id="titleLabel" text="Add New Student"
+                   styleClass="dialog-title"
+                   StackPane.alignment="CENTER_LEFT"/>
+        </StackPane>
+
+        <VBox spacing="18" styleClass="dialog-body">
+
+            <GridPane hgap="18" vgap="14">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50"/>
+                    <ColumnConstraints percentWidth="50"/>
+                </columnConstraints>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="Student ID" styleClass="form-label"/>
+                    <TextField fx:id="studentIdField" styleClass="dialog-input"/>
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="Full name" styleClass="form-label"/>
+                    <TextField fx:id="fullNameField" styleClass="dialog-input"/>
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label text="Programme" styleClass="form-label"/>
+                    <ComboBox fx:id="programmeCombo" promptText="Select Programme" styleClass="dialog-input"/>
+                </VBox>
+
+                <HBox spacing="18" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Level" styleClass="form-label"/>
+                        <ComboBox fx:id="levelCombo" promptText="Select Level" styleClass="dialog-input"/>
+                    </VBox>
+
+                    <VBox spacing="6" prefWidth="130">
+                        <Label text="GPA" styleClass="form-label"/>
+                        <Spinner fx:id="gpaSpinner" editable="true" styleClass="dialog-input"/>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Label text="Email" styleClass="form-label"/>
+                    <TextField fx:id="emailField" styleClass="dialog-input"/>
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <Label text="Phone number" styleClass="form-label"/>
+                    <TextField fx:id="phoneField" styleClass="dialog-input"/>
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <Label text="Date added" styleClass="form-label"/>
+                    <DatePicker fx:id="dateAddedPicker" styleClass="dialog-input"/>
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <Label text="Status" styleClass="form-label"/>
+                    <HBox spacing="18" alignment="CENTER_LEFT">
+                        <RadioButton fx:id="activeRadio" text="Active"/>
+                        <RadioButton fx:id="inactiveRadio" text="Inactive"/>
+                    </HBox>
+                </VBox>
+            </GridPane>
+
+            <Label fx:id="errorLabel" text="" styleClass="error-label" wrapText="true"/>
+
+            <HBox alignment="CENTER_RIGHT" spacing="12">
+                <Button text="Cancel" onAction="#cancel" styleClass="cancel-btn"/>
+                <Button text="Save Student" onAction="#saveStudent" styleClass="save-btn"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+</StackPane>

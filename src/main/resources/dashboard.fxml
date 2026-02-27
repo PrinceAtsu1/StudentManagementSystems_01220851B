@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.template.ui.controllers.DashboardController"
+            id="dashboardRoot"
+            styleClass="dashboard-root">
+
+    <!-- HEADER -->
+    <top>
+        <VBox alignment="CENTER" spacing="8" styleClass="dashboard-header">
+            <Label text="ATU STUDENT MANAGEMENT SYSTEM" styleClass="dashboard-title"/>
+            <Label text="Administrator Dashboard" styleClass="dashboard-subtitle"/>
+        </VBox>
+    </top>
+
+    <!-- CENTER CONTENT -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" styleClass="dashboard-center">
+
+            <!-- ✅ STATS ROW -->
+            <HBox alignment="CENTER" spacing="16" styleClass="stats-row">
+
+                <VBox alignment="CENTER" spacing="4" styleClass="stat-card">
+                    <Label fx:id="totalStudentsLabel" text="0" styleClass="stat-number"/>
+                    <Label text="Total Students" styleClass="stat-label"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="4" styleClass="stat-card">
+                    <Label fx:id="activeStudentsLabel" text="0" styleClass="stat-number"/>
+                    <Label text="Active Students" styleClass="stat-label"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="4" styleClass="stat-card">
+                    <Label fx:id="inactiveStudentsLabel" text="0" styleClass="stat-number"/>
+                    <Label text="Inactive Students" styleClass="stat-label"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="4" styleClass="stat-card">
+                    <Label fx:id="avgGpaLabel" text="0.00" styleClass="stat-number"/>
+                    <Label text="Average GPA" styleClass="stat-label"/>
+                </VBox>
+
+            </HBox>
+
+            <!-- ✅ MAIN CARDS (slightly smaller) -->
+            <GridPane alignment="CENTER" hgap="26" vgap="22" styleClass="dash-grid">
+
+                <Button onAction="#openStudents"
+                        styleClass="dash-card"
+                        contentDisplay="GRAPHIC_ONLY"
+                        GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <graphic>
+                        <VBox alignment="CENTER" spacing="6">
+                            <Label text="STUDENT" styleClass="dash-card-title"/>
+                            <Label text="Manage student records and profiles" styleClass="dash-card-desc"/>
+                        </VBox>
+                    </graphic>
+                </Button>
+
+                <Button onAction="#openReports"
+                        styleClass="dash-card"
+                        contentDisplay="GRAPHIC_ONLY"
+                        GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <graphic>
+                        <VBox alignment="CENTER" spacing="6">
+                            <Label text="REPORT" styleClass="dash-card-title"/>
+                            <Label text="View analytics, GPA, and performance" styleClass="dash-card-desc"/>
+                        </VBox>
+                    </graphic>
+                </Button>
+
+                <Button onAction="#openImportExport"
+                        styleClass="dash-card"
+                        contentDisplay="GRAPHIC_ONLY"
+                        GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <graphic>
+                        <VBox alignment="CENTER" spacing="6">
+                            <Label text="IMPORT / EXPORT" styleClass="dash-card-title"/>
+                            <Label text="Handle CSV data transfers" styleClass="dash-card-desc"/>
+                        </VBox>
+                    </graphic>
+                </Button>
+
+                <Button onAction="#openSettings"
+                        styleClass="dash-card"
+                        contentDisplay="GRAPHIC_ONLY"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <graphic>
+                        <VBox alignment="CENTER" spacing="6">
+                            <Label text="SETTING" styleClass="dash-card-title"/>
+                            <Label text="Configure system parameters" styleClass="dash-card-desc"/>
+                        </VBox>
+                    </graphic>
+                </Button>
+
+            </GridPane>
+
+        </VBox>
+    </center>
+
+    <!-- FOOTER -->
+    <bottom>
+        <HBox alignment="CENTER" styleClass="dashboard-bottom">
+            <Hyperlink text="Logout" onAction="#logout" styleClass="logout-link"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

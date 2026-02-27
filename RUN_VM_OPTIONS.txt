@@ -1,0 +1,19 @@
+JDK: 21
+
+# ===============================
+# JavaFX VM Options (Windows)
+# ===============================
+# 1) Download and unzip JavaFX SDK 21.
+#    Example location:
+#    C:\javafx\javafx-sdk-21\lib
+#
+# 2) In IntelliJ:
+#    Run → Edit Configurations
+#    Select your Main run configuration
+#    Paste the VM options below into the "VM options" field
+#
+# IMPORTANT:
+# - Keep quotes if your path contains spaces.
+# - Change the path if your JavaFX SDK is installed elsewhere.
+
+--module-path "C:\javafx\javafx-sdk-21\lib" --add-modules javafx.controls,javafx.fxml

@@ -246,7 +246,7 @@ You imported/added a duplicate Student ID. Use a new unique ID.
 ---
 
 ## Author / Notes
-Project name: **Mymidsematsu**  
+Project name: **StudentManagementSystems**  
 Platform: **Windows**  
 Theme: **Teal green** (styled in `style.css`)
  
